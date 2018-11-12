@@ -1,2 +1,0 @@
-# Bedbug
-Technical Requirements Placeholder
