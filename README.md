@@ -7,39 +7,41 @@ UAT SITE IS UP
 
 <http://lakeheadbedbug.hopto.org/>
 
-# Code Folder
+## Code Folder
 Java Classes for object management
 
 ## FunctionalSpecsREquiremnts
 placehodler
 
-# ProjectPlanning
+## ProjectPlanning
 Living schedule and plan used thoeughout project
 
 # src
 Home for final source code
 STAGING folders are for trial versions and demos
 
-# TechnicalDesign
+## TechnicalDesign
 UML Diagrams
 Data Model Diagrams
 Framework Evaluation Process
 
-# UserRequirements
+## UserRequirements
 Artefacts for Requirments Gathering
 Links to sharable live document inside
 
-# web-student-tracker
+## web-student-tracker
 demo app
 
-UAT SITE IS UP
+# UAT SITE IS UP
 
 [Project Bedbug UAT Login](http://lakeheadbedbug.hopto.org/)
 
 <http://lakeheadbedbug.hopto.org/>
 
 
-## Github Stuff and Tips
+
+
+# Github Stuff and Tips
 You can use the [editor on GitHub](https://github.com/riklauder/Bedbug/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
