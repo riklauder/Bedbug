@@ -14,7 +14,7 @@ Java Classes for object management
 placehodler
 
 ## ProjectPlanning
-Living schedule and plan used thoeughout project
+Living schedule and plan used throughout project
 
 # src
 Home for final source code
