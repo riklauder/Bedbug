@@ -9,12 +9,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="student")
-public class Student {
+public class Student extends User{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
-	private int id;
 	
 	@Column(name="first_name")
 	private String firstName;
@@ -25,15 +23,17 @@ public class Student {
 	@Column(name="email")
 	private String email;
 	
-	public Student() {}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
+	Student(String ID, String name, int stType){
+        super(ID);
+        this.name = name;
+        this.studentType = stType;
+    }
+    Student(String ID, String name, int stType, Room room){
+        super(ID);
+        this.name = name;
+        this.studentType = stType;
+        this.room = room;
+    }
 
 	public String getFirstName() {
 		return firstName;
@@ -63,10 +63,6 @@ public class Student {
 	public String toString() {
 		return "Student [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
 	}
-	
-	
-	
-	
 	
 	
 }

@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `resapp` (
   `PID` int(11) DEFAULT NULL,
+  'UserID' int(11) DEFAULT NULL,
   `PreffAccomStyle` varchar(30) DEFAULT NULL,
   `SpecialConsiderations` varchar(100) DEFAULT NULL,
   `PreferedRoomate1` varchar(60) DEFAULT NULL,
@@ -46,6 +47,8 @@ CREATE TABLE `resapp` (
 
 CREATE TABLE `residentinfo` (
   `PID` int(11) DEFAULT NULL,
+  'UserID' int(11) DEFAULT NULL,
+  'RoomID' int(11) DEFAULT NULL,
   `PhoneNum` varchar(15) DEFAULT NULL,
   `EmergContact` varchar(30) DEFAULT NULL,
   `EmergNum` varchar(15) DEFAULT NULL,
@@ -66,6 +69,7 @@ CREATE TABLE `resrooms` (
   `HouseName` varchar(30) DEFAULT NULL,
   `ResType` varchar(30) DEFAULT NULL,
   `RoomType` varchar(30) DEFAULT NULL
+  'Size' int(2) DEFAULT NULL --number of students
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -76,6 +80,7 @@ CREATE TABLE `resrooms` (
 
 CREATE TABLE `roombooking` (
   `PID` int(11) DEFAULT NULL,
+  'UserID' int(11) DEFAULT NULL,
   `TermNum` int(11) DEFAULT NULL,
   `RoomID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -98,18 +103,34 @@ CREATE TABLE `userinfo` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `admininfo`
+--
+
+CREATE TABLE `admininfo` (
+  `PID` int(11) NOT NULL,
+  `EmployeeID` int(11) DEFAULT NULL,
+  `FirstName` varchar(30) DEFAULT NULL,
+  `LastName` varchar(30) DEFAULT NULL,
+  `Email` varchar(50) DEFAULT NULL,
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `workorder`
 --
 
 CREATE TABLE `workorder` (
   `OrderNum` int(11) NOT NULL,
   `SubPID` int(11) DEFAULT NULL,
+  'UserID' int(11) DEFAULT,
   `Building` varchar(30) DEFAULT NULL,
   `Room` varchar(30) DEFAULT NULL,
   `Description` varchar(300) DEFAULT NULL,
   `DateOpened` date DEFAULT NULL,
   `DateClosed` date DEFAULT NULL,
-  `Notes` varchar(100) DEFAULT NULL
+  `Notes` varchar(100) DEFAULT NULL,
+  'Complete' boolean DEFAULT FALSE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
