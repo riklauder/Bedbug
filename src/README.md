@@ -8,7 +8,7 @@ This demonstrates sucessfully OAuth2 Authorization Grant Code.
 ## Build Process
 
 None as itS just HTML, CSS and Javascript.  Also the tokens and requests need to be hosted on specific registered domains.  This is currently running on lighttpd on a linux router.
-# Bedbug Stagin ui
+# Bedbug Staging ui
 
 This is Oauth 2 with Java under a virual token bearer Authorization.  Users still login directly through Google/Lakehead myino however the RMS system handles tokens.  This increases scope and duration of the authentication.
 
