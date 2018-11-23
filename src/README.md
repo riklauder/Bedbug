@@ -3,7 +3,7 @@ Bedbug Staging is currently holding test code.  Mostly Java Spring Maven files. 
 
 # Lakehead Bedbug
 
-Lakehead Bedbug is currently has all the files on the test public url http://lakeheadbedbug.hopto.org
+Lakehead Bedbug currently has all the files on the test public url http://lakeheadbedbug.hopto.org
 This demonstrates sucessfully OAuth2 Authorization Grant Code.
 ## Build Process
 
