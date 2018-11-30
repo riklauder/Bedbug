@@ -1,14 +1,14 @@
 # Bedbug
 Bedbug Staging is currently holding test code.  Mostly Java Spring Maven files.  Should create an authorization server locally that allows for user authentication.
 
-# Lakehead Bedbug
+# Lakehead Bedbug aka Phaze 1
 
 Lakehead Bedbug currently has all the files on the test public url http://lakeheadbedbug.hopto.org
 This demonstrates sucessfully OAuth2 Authorization Grant Code.
 ## Build Process
 
 None as itS just HTML, CSS and Javascript.  Also the tokens and requests need to be hosted on specific registered domains.  This is currently running on lighttpd on a linux router.
-# Bedbug Staging ui
+# Bedbug Staging ui Phaze 2
 
 This is Oauth 2 with Java under a virual token bearer Authorization.  Users still login directly through Google/Lakehead myino however the RMS system handles tokens.  This increases scope and duration of the authentication.
 
