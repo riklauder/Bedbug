@@ -11,11 +11,14 @@ UAT TEST SITE IS UP
 
 ## Code Folders - Buildable Compliable
 Architecture – Classes
-https://github.com/riklauder/Bedbug/tree/master/Code/BedbugClasses/src/bedbugclasses (https://github.com/riklauder/Bedbug/tree/master/Code/BedbugClasses/src/bedbugclasses)
+https://github.com/riklauder/Bedbug/tree/master/Code/BedbugClasses/src/bedbugclasses 
+
 User Authorization (Parts 1 JavaScript and 2 Java)
-https://github.com/riklauder/Bedbug/blob/master/src/README.md (https://github.com/riklauder/Bedbug/tree/master/src)
+https://github.com/riklauder/Bedbug/tree/master/src
+
+
 User Interface
-https://github.com/riklauder/Bedbug/tree/master/web-student-tracker (https://github.com/riklauder/Bedbug/tree/master/web-student-tracker)
+https://github.com/riklauder/Bedbug/tree/master/web-student-tracker 
 
 
 
