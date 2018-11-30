@@ -1,2 +1,0 @@
-# Bedbug
-Functional Requirements Placeholder
