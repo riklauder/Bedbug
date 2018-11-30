@@ -1,23 +1,30 @@
 ## Welcome to Project Bedbug Pages
 Residence Registration Automation System:  Accommodations at the Lakehead University Thunder Bay Campus currently are divided into three prirnary living styles: residence halls, apartments and townhouses. Each  style provides unique environment that allows you to experience freedom whilc receiving the acadernic and social support that you need to be successful.
 
-UAT SITE IS UP
+
+
+UAT TEST SITE IS UP
 
 [Project Bedbug UAT Login](http://lakeheadbedbug.hopto.org/)
 
 <http://lakeheadbedbug.hopto.org/>
 
-## Code Folder
-Java Classes for object management
+## Code Folders - Buildable Compliable
+Architecture – Classes
+https://github.com/riklauder/Bedbug/tree/master/Code/BedbugClasses/src/bedbugclasses (https://github.com/riklauder/Bedbug/tree/master/Code/BedbugClasses/src/bedbugclasses)
+User Authorization (Parts 1 JavaScript and 2 Java)
+https://github.com/riklauder/Bedbug/blob/master/src/README.md (https://github.com/riklauder/Bedbug/tree/master/src)
+User Interface
+https://github.com/riklauder/Bedbug/tree/master/web-student-tracker (https://github.com/riklauder/Bedbug/tree/master/web-student-tracker)
 
-## FunctionalSpecsREquiremnts
-placehodler
+
 
 ## ProjectPlanning
 Living schedule and plan used throughout project
+https://github.com/riklauder/Bedbug/tree/master/ProjectPlanning (https://github.com/riklauder/Bedbug/tree/master/ProjectPlanning)
 
 # src
-Home for final source code
+Home for user auth source code
 STAGING folders are for trial versions and demos
 
 ## TechnicalDesign
