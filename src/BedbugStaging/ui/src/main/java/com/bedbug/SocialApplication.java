@@ -2,9 +2,13 @@ package com.bedbug;
 
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.Arrays;
 import java.util.List;
+import java.util.*;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import javax.servlet.Filter;
 
 
@@ -13,8 +17,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.oauth2.client.CommonOAuth2Provider;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -23,12 +30,19 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.core.env.Environment;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticationProcessingFilter;
 import org.springframework.security.oauth2.client.filter.OAuth2ClientContextFilter;
+import org.springframework.security.oauth2.client.registration.ClientRegistration;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
+import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
+import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
@@ -37,8 +51,10 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.filter.CompositeFilter;
 
 
@@ -73,8 +89,10 @@ public class SocialApplication extends WebSecurityConfigurerAdapter  {
 				.logoutSuccessUrl("/").permitAll().and().csrf()
 				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
 				.addFilterBefore(ssoFilter(), BasicAuthenticationFilter.class);
-
 		// @formatter:on
+	http.authorizeRequests().anyRequest().authenticated()
+	.and()
+	.oauth2Login();
 
   }
 
@@ -90,11 +108,57 @@ public class SocialApplication extends WebSecurityConfigurerAdapter  {
 	}
 
 
+	@Configuration
+	@EnableWebSecurity
+	public class SecurityConfig extends WebSecurityConfigurerAdapter {
+		private final List<String> clients = Arrays.asList("google", "facebook");
+	 
+		@Bean
+		public ClientRegistrationRepository clientRegistrationRepository() {
+			List<ClientRegistration> registrations = clients.stream()
+				.map(c -> getRegistration(c))
+			  	.filter(registration -> registration != null)
+			  	.collect(Collectors.toList());
+			  
+			 
+			return new InMemoryClientRegistrationRepository(registrations);
+		}
+	}
+
+	private static String CLIENT_PROPERTY_KEY = "spring.security.oauth2.client.registration.";
+   
+  	@Autowired
+  	private Environment env;
+   
+  	private ClientRegistration getRegistration(String client) {
+	  String clientId = env.getProperty(
+		CLIENT_PROPERTY_KEY + client + ".client-id");
+   
+	  if (clientId == null) {
+		  return null;
+	  }
+   
+	  String clientSecret = env.getProperty(
+		CLIENT_PROPERTY_KEY + client + ".client-secret");
+	
+	  if (client.equals("google")) {
+		  return CommonOAuth2Provider.GOOGLE.getBuilder(client)
+			.clientId(clientId).clientSecret(clientSecret).build();
+	  }
+	  if (client.equals("facebook")) {
+		  return CommonOAuth2Provider.FACEBOOK.getBuilder(client)
+			.clientId(clientId).clientSecret(clientSecret).build();
+	  }
+	  return null;
+  }
+
+
   public static void main(String[] args) {
 		SpringApplication.run(SocialApplication.class, args);
 		//SpringApplication.run(GoogleserviceApplication.class, args);
-  }
-
+		System.out.println(ClientResources.class.toString());
+}
+  
   @Bean
 
 	public FilterRegistrationBean<OAuth2ClientContextFilter> oauth2ClientFilterRegistration(OAuth2ClientContextFilter filter) {
@@ -115,7 +179,7 @@ public class SocialApplication extends WebSecurityConfigurerAdapter  {
 		return new ClientResources();
 
 	}
-  private Filter ssoFilter() {
+  	private Filter ssoFilter() {
 		CompositeFilter filter = new CompositeFilter();
 		List<Filter> filters = new ArrayList<>();
 		filters.add(ssoFilter(google(), "/login/google"));
@@ -146,7 +210,7 @@ class ClientResources {
 	@NestedConfigurationProperty
 	private ResourceServerProperties resource = new ResourceServerProperties();
 
-	public AuthorizationCodeResourceDetails getClient() {
+	public OAuth2ProtectedResourceDetails getClient() {
 		return client;
 	}
 

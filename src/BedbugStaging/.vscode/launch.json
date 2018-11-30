@@ -1,0 +1,35 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - SocialApplication",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "com.bedbug.SocialApplication",
+            "args": "",
+            "projectName": "bedbug"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-GoogleserviceApplication<bedbug>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.bedbug.GoogleserviceApplication",
+            "projectName": "bedbug",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-SimpleApplication<bedbug>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.example.demo.SimpleApplication",
+            "projectName": "bedbug",
+            "args": ""
+        }
+    ]
+}
